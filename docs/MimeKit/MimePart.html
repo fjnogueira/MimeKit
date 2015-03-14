@@ -565,6 +565,18 @@
                   </tr>
                   <tr valign="top">
                     <td>
+                      <div>
+                      </div>
+                    </td>
+                    <td colspan="2">
+                      <b>
+                        <a href="#M:MimeKit.MimePart.GetBestEncoding(MimeKit.EncodingConstraint,System.Int32,System.Threading.CancellationToken)">GetBestEncoding</a>
+                      </b>(<a href="../MimeKit/EncodingConstraint.html">EncodingConstraint</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Threading.CancellationToken">System.Threading.CancellationToken</a>)<nobr> : <a href="../MimeKit/ContentEncoding.html">ContentEncoding</a></nobr><blockquote>
+            Calculates the most efficient content encoding given the specified constraint.
+            </blockquote></td>
+                  </tr>
+                  <tr valign="top">
+                    <td>
                       <div>override </div>
                     </td>
                     <td colspan="2">
@@ -1186,6 +1198,14 @@
             An I/O error occurred.
             </td>
                   </tr>
+                  <tr valign="top">
+                    <td>
+                      <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.ArgumentOutOfRangeException">ArgumentOutOfRangeException</a>
+                    </td>
+                    <td>
+                      <i>constraint</i> is not a valid value.
+            </td>
+                  </tr>
                 </table>
               </blockquote>
               <h2 class="Section">Remarks</h2>
@@ -1194,6 +1214,78 @@
             </div>
               <h2 class="Section">Requirements</h2>
               <div class="SectionBox" id="M:MimeKit.MimePart.GetBestEncoding(MimeKit.EncodingConstraint,System.Threading.CancellationToken):Version Information">
+                <b>Namespace: </b>MimeKit<br /><b>Assembly: </b>MimeKit (in MimeKit.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+              <hr size="1" />
+            </blockquote>
+            <h3 id="M:MimeKit.MimePart.GetBestEncoding(MimeKit.EncodingConstraint,System.Int32,System.Threading.CancellationToken)">GetBestEncoding Method</h3>
+            <blockquote id="M:MimeKit.MimePart.GetBestEncoding(MimeKit.EncodingConstraint,System.Int32,System.Threading.CancellationToken):member">
+              <div class="msummary">
+            Calculates the most efficient content encoding given the specified constraint.
+            </div>
+              <h2>Syntax</h2>
+              <div class="Signature">public <a href="../MimeKit/ContentEncoding.html">ContentEncoding</a> <b>GetBestEncoding</b> (<a href="../MimeKit/EncodingConstraint.html">EncodingConstraint</a> constraint, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> maxLineLength, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Threading.CancellationToken">System.Threading.CancellationToken</a> cancellationToken)</div>
+              <h4 class="Subsection">Parameters</h4>
+              <blockquote class="SubsectionBox" id="M:MimeKit.MimePart.GetBestEncoding(MimeKit.EncodingConstraint,System.Int32,System.Threading.CancellationToken):Parameters">
+                <dl>
+                  <dt>
+                    <i>constraint</i>
+                  </dt>
+                  <dd>The encoding constraint.</dd>
+                  <dt>
+                    <i>maxLineLength</i>
+                  </dt>
+                  <dd>The maximum allowable length for a line (not counting the CRLF). Must be between <tt>72</tt> and <tt>998</tt> (inclusive).</dd>
+                  <dt>
+                    <i>cancellationToken</i>
+                  </dt>
+                  <dd>A cancellation token.</dd>
+                </dl>
+              </blockquote>
+              <h4 class="Subsection">Returns</h4>
+              <blockquote class="SubsectionBox" id="M:MimeKit.MimePart.GetBestEncoding(MimeKit.EncodingConstraint,System.Int32,System.Threading.CancellationToken):Returns">The most efficient content encoding.</blockquote>
+              <h4 class="Subsection">Exceptions</h4>
+              <blockquote class="SubsectionBox" id="M:MimeKit.MimePart.GetBestEncoding(MimeKit.EncodingConstraint,System.Int32,System.Threading.CancellationToken):Exceptions">
+                <table class="TypeDocumentation">
+                  <tr>
+                    <th>Type</th>
+                    <th>Reason</th>
+                  </tr>
+                  <tr valign="top">
+                    <td>
+                      <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.ArgumentOutOfRangeException">ArgumentOutOfRangeException</a>
+                    </td>
+                    <td>
+                      <p>
+                        <i>maxLineLength</i> is not between <tt>72</tt> and <tt>998</tt> (inclusive).</p>
+                      <p>-or-</p>
+                      <p>
+                        <i>constraint</i> is not a valid value.</p>
+                    </td>
+                  </tr>
+                  <tr valign="top">
+                    <td>
+                      <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.OperationCanceledException">OperationCanceledException</a>
+                    </td>
+                    <td>
+            The operation was canceled via the cancellation token.
+            </td>
+                  </tr>
+                  <tr valign="top">
+                    <td>
+                      <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.IOException">System.IO.IOException</a>
+                    </td>
+                    <td>
+            An I/O error occurred.
+            </td>
+                  </tr>
+                </table>
+              </blockquote>
+              <h2 class="Section">Remarks</h2>
+              <div class="SectionBox" id="M:MimeKit.MimePart.GetBestEncoding(MimeKit.EncodingConstraint,System.Int32,System.Threading.CancellationToken):Remarks">
+            If no <a href="../MimeKit/ContentObject.html">MimeKit.ContentObject</a> is set, <a href="../MimeKit/ContentEncoding.html#F:MimeKit.ContentEncoding.SevenBit">ContentEncoding.SevenBit</a> will be returned.
+            </div>
+              <h2 class="Section">Requirements</h2>
+              <div class="SectionBox" id="M:MimeKit.MimePart.GetBestEncoding(MimeKit.EncodingConstraint,System.Int32,System.Threading.CancellationToken):Version Information">
                 <b>Namespace: </b>MimeKit<br /><b>Assembly: </b>MimeKit (in MimeKit.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
               <hr size="1" />
             </blockquote>

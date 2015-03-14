@@ -285,8 +285,8 @@
                     </td>
                     <td colspan="2">
                       <b>
-                        <a href="#M:MimeKit.IO.Filters.BestEncodingFilter.GetBestEncoding(MimeKit.EncodingConstraint)">GetBestEncoding</a>
-                      </b>(<a href="../MimeKit/EncodingConstraint.html">MimeKit.EncodingConstraint</a>)<nobr> : <a href="../MimeKit/ContentEncoding.html">MimeKit.ContentEncoding</a></nobr><blockquote>
+                        <a href="#M:MimeKit.IO.Filters.BestEncodingFilter.GetBestEncoding(MimeKit.EncodingConstraint,System.Int32)">GetBestEncoding</a>
+                      </b>(<a href="../MimeKit/EncodingConstraint.html">MimeKit.EncodingConstraint</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="../MimeKit/ContentEncoding.html">MimeKit.ContentEncoding</a></nobr><blockquote>
             Gets the best encoding given the specified constraints.
             </blockquote></td>
                   </tr>
@@ -466,30 +466,55 @@
                 <b>Namespace: </b>MimeKit.IO.Filters<br /><b>Assembly: </b>MimeKit (in MimeKit.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
               <hr size="1" />
             </blockquote>
-            <h3 id="M:MimeKit.IO.Filters.BestEncodingFilter.GetBestEncoding(MimeKit.EncodingConstraint)">GetBestEncoding Method</h3>
-            <blockquote id="M:MimeKit.IO.Filters.BestEncodingFilter.GetBestEncoding(MimeKit.EncodingConstraint):member">
+            <h3 id="M:MimeKit.IO.Filters.BestEncodingFilter.GetBestEncoding(MimeKit.EncodingConstraint,System.Int32)">GetBestEncoding Method</h3>
+            <blockquote id="M:MimeKit.IO.Filters.BestEncodingFilter.GetBestEncoding(MimeKit.EncodingConstraint,System.Int32):member">
               <div class="msummary">
             Gets the best encoding given the specified constraints.
             </div>
               <h2>Syntax</h2>
-              <div class="Signature">public <a href="../MimeKit/ContentEncoding.html">MimeKit.ContentEncoding</a> <b>GetBestEncoding</b> (<a href="../MimeKit/EncodingConstraint.html">MimeKit.EncodingConstraint</a> constraint)</div>
+              <div class="Signature">public <a href="../MimeKit/ContentEncoding.html">MimeKit.ContentEncoding</a> <b>GetBestEncoding</b> (<a href="../MimeKit/EncodingConstraint.html">MimeKit.EncodingConstraint</a> constraint, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> maxLineLength)</div>
               <h4 class="Subsection">Parameters</h4>
-              <blockquote class="SubsectionBox" id="M:MimeKit.IO.Filters.BestEncodingFilter.GetBestEncoding(MimeKit.EncodingConstraint):Parameters">
+              <blockquote class="SubsectionBox" id="M:MimeKit.IO.Filters.BestEncodingFilter.GetBestEncoding(MimeKit.EncodingConstraint,System.Int32):Parameters">
                 <dl>
                   <dt>
                     <i>constraint</i>
                   </dt>
                   <dd>The encoding constraint.</dd>
+                  <dt>
+                    <i>maxLineLength</i>
+                  </dt>
+                  <dd>The maximum allowable line length (not counting the CRLF). Must be between <tt>72</tt> and <tt>998</tt> (inclusive).</dd>
                 </dl>
               </blockquote>
               <h4 class="Subsection">Returns</h4>
-              <blockquote class="SubsectionBox" id="M:MimeKit.IO.Filters.BestEncodingFilter.GetBestEncoding(MimeKit.EncodingConstraint):Returns">The best encoding.</blockquote>
+              <blockquote class="SubsectionBox" id="M:MimeKit.IO.Filters.BestEncodingFilter.GetBestEncoding(MimeKit.EncodingConstraint,System.Int32):Returns">The best encoding.</blockquote>
+              <h4 class="Subsection">Exceptions</h4>
+              <blockquote class="SubsectionBox" id="M:MimeKit.IO.Filters.BestEncodingFilter.GetBestEncoding(MimeKit.EncodingConstraint,System.Int32):Exceptions">
+                <table class="TypeDocumentation">
+                  <tr>
+                    <th>Type</th>
+                    <th>Reason</th>
+                  </tr>
+                  <tr valign="top">
+                    <td>
+                      <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.ArgumentOutOfRangeException">ArgumentOutOfRangeException</a>
+                    </td>
+                    <td>
+                      <p>
+                        <i>maxLineLength</i> is not between <tt>72</tt> and <tt>998</tt> (inclusive).</p>
+                      <p>-or-</p>
+                      <p>
+                        <i>constraint</i> is not a valid value.</p>
+                    </td>
+                  </tr>
+                </table>
+              </blockquote>
               <h2 class="Section">Remarks</h2>
-              <div class="SectionBox" id="M:MimeKit.IO.Filters.BestEncodingFilter.GetBestEncoding(MimeKit.EncodingConstraint):Remarks">
+              <div class="SectionBox" id="M:MimeKit.IO.Filters.BestEncodingFilter.GetBestEncoding(MimeKit.EncodingConstraint,System.Int32):Remarks">
             Gets the best encoding given the specified constraints.
             </div>
               <h2 class="Section">Requirements</h2>
-              <div class="SectionBox" id="M:MimeKit.IO.Filters.BestEncodingFilter.GetBestEncoding(MimeKit.EncodingConstraint):Version Information">
+              <div class="SectionBox" id="M:MimeKit.IO.Filters.BestEncodingFilter.GetBestEncoding(MimeKit.EncodingConstraint,System.Int32):Version Information">
                 <b>Namespace: </b>MimeKit.IO.Filters<br /><b>Assembly: </b>MimeKit (in MimeKit.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
               <hr size="1" />
             </blockquote>

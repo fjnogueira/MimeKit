@@ -318,6 +318,23 @@
                     </td>
                     <td>
                       <b>
+                        <a href="#P:MimeKit.ParserOptions.ParameterComplianceMode">ParameterComplianceMode</a>
+                      </b>
+                    </td>
+                    <td>
+                      <i>
+                        <a href="../MimeKit/RfcComplianceMode.html">RfcComplianceMode</a>
+                      </i>. 
+            Gets or sets the compliance mode that should be used when parsing Content-Type and Content-Disposition parameters.
+            </td>
+                  </tr>
+                  <tr valign="top">
+                    <td>
+                      <div>
+                      </div>
+                    </td>
+                    <td>
+                      <b>
                         <a href="#P:MimeKit.ParserOptions.RespectContentLength">RespectContentLength</a>
                       </b>
                     </td>
@@ -418,7 +435,8 @@
             (the default) as it allows maximum interoperability with existing (broken) mail clients
             and other mail software such as sloppily written perl scripts (aka spambots).</p>
                 <p>It should be noted that even in <a href="../MimeKit/RfcComplianceMode.html#F:MimeKit.RfcComplianceMode.Strict">RfcComplianceMode.Strict</a> mode, the address
-            parser is fairly liberal in what it accepts.</p>
+            parser is fairly liberal in what it accepts. Setting it to <a href="../MimeKit/RfcComplianceMode.html#F:MimeKit.RfcComplianceMode.Loose">RfcComplianceMode.Loose</a>
+            just makes it try harder to deal with garbage input.</p>
               </div>
               <h2 class="Section">Requirements</h2>
               <div class="SectionBox" id="P:MimeKit.ParserOptions.AddressParserComplianceMode:Version Information">
@@ -480,6 +498,29 @@
             </div>
               <h2 class="Section">Requirements</h2>
               <div class="SectionBox" id="F:MimeKit.ParserOptions.Default:Version Information">
+                <b>Namespace: </b>MimeKit<br /><b>Assembly: </b>MimeKit (in MimeKit.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+              <hr size="1" />
+            </blockquote>
+            <h3 id="P:MimeKit.ParserOptions.ParameterComplianceMode">ParameterComplianceMode Property</h3>
+            <blockquote id="P:MimeKit.ParserOptions.ParameterComplianceMode:member">
+              <div class="msummary">
+            Gets or sets the compliance mode that should be used when parsing Content-Type and Content-Disposition parameters.
+            </div>
+              <h2>Syntax</h2>
+              <div class="Signature">public <a href="../MimeKit/RfcComplianceMode.html">RfcComplianceMode</a> <b>ParameterComplianceMode</b>  { get; set; }</div>
+              <h4 class="Subsection">Value</h4>
+              <blockquote class="SubsectionBox" id="P:MimeKit.ParserOptions.ParameterComplianceMode:Value">The RFC compliance mode.</blockquote>
+              <h2 class="Section">Remarks</h2>
+              <div class="SectionBox" id="P:MimeKit.ParserOptions.ParameterComplianceMode:Remarks">
+                <p>In general, you'll probably want this value to be <a href="../MimeKit/RfcComplianceMode.html#F:MimeKit.RfcComplianceMode.Loose">RfcComplianceMode.Loose</a>
+            (the default) as it allows maximum interoperability with existing (broken) mail clients
+            and other mail software such as sloppily written perl scripts (aka spambots).</p>
+                <p>It should be noted that even in <a href="../MimeKit/RfcComplianceMode.html#F:MimeKit.RfcComplianceMode.Strict">RfcComplianceMode.Strict</a> mode, the parameter
+            parser is fairly liberal in what it accepts. Setting it to <a href="../MimeKit/RfcComplianceMode.html#F:MimeKit.RfcComplianceMode.Loose">RfcComplianceMode.Loose</a>
+            just makes it try harder to deal with garbage input.</p>
+              </div>
+              <h2 class="Section">Requirements</h2>
+              <div class="SectionBox" id="P:MimeKit.ParserOptions.ParameterComplianceMode:Version Information">
                 <b>Namespace: </b>MimeKit<br /><b>Assembly: </b>MimeKit (in MimeKit.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
               <hr size="1" />
             </blockquote>

@@ -374,6 +374,19 @@
                     <td>[read-only]<div></div></td>
                     <td>
                       <b>
+                        <a href="#P:MimeKit.Header.RawField">RawField</a>
+                      </b>
+                    </td>
+                    <td>
+                      <i>
+                        <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[]</i>. 
+            Gets the raw field name of the header.
+            </td>
+                  </tr>
+                  <tr valign="top">
+                    <td>[read-only]<div></div></td>
+                    <td>
+                      <b>
                         <a href="#P:MimeKit.Header.RawValue">RawValue</a>
                       </b>
                     </td>
@@ -407,6 +420,18 @@
             <div class="SectionBox" id="Public Methods">
               <div class="SubsectionBox">
                 <table class="TypeMembers">
+                  <tr valign="top">
+                    <td>
+                      <div>
+                      </div>
+                    </td>
+                    <td colspan="2">
+                      <b>
+                        <a href="#M:MimeKit.Header.Clone()">Clone</a>
+                      </b>()<nobr> : <a href="../MimeKit/Header.html">Header</a></nobr><blockquote>
+            Clone the header.
+            </blockquote></td>
+                  </tr>
                   <tr valign="top">
                     <td>
                       <div>
@@ -980,6 +1005,26 @@
                 <b>Namespace: </b>MimeKit<br /><b>Assembly: </b>MimeKit (in MimeKit.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
               <hr size="1" />
             </blockquote>
+            <h3 id="M:MimeKit.Header.Clone()">Clone Method</h3>
+            <blockquote id="M:MimeKit.Header.Clone():member">
+              <div class="msummary">
+            Clone the header.
+            </div>
+              <h2>Syntax</h2>
+              <div class="Signature">public <a href="../MimeKit/Header.html">Header</a> <b>Clone</b> ()</div>
+              <h4 class="Subsection">Returns</h4>
+              <blockquote class="SubsectionBox" id="M:MimeKit.Header.Clone():Returns">
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </blockquote>
+              <h2 class="Section">Remarks</h2>
+              <div class="SectionBox" id="M:MimeKit.Header.Clone():Remarks">
+            Clones the header, copying the current RawValue.
+            </div>
+              <h2 class="Section">Requirements</h2>
+              <div class="SectionBox" id="M:MimeKit.Header.Clone():Version Information">
+                <b>Namespace: </b>MimeKit<br /><b>Assembly: </b>MimeKit (in MimeKit.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+              <hr size="1" />
+            </blockquote>
             <h3 id="P:MimeKit.Header.Field">Field Property</h3>
             <blockquote id="P:MimeKit.Header.Field:member">
               <div class="msummary">
@@ -1096,6 +1141,24 @@
             </div>
               <h2 class="Section">Requirements</h2>
               <div class="SectionBox" id="P:MimeKit.Header.Offset:Version Information">
+                <b>Namespace: </b>MimeKit<br /><b>Assembly: </b>MimeKit (in MimeKit.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+              <hr size="1" />
+            </blockquote>
+            <h3 id="P:MimeKit.Header.RawField">RawField Property</h3>
+            <blockquote id="P:MimeKit.Header.RawField:member">
+              <div class="msummary">
+            Gets the raw field name of the header.
+            </div>
+              <h2>Syntax</h2>
+              <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[] <b>RawField</b>  { get; }</div>
+              <h4 class="Subsection">Value</h4>
+              <blockquote class="SubsectionBox" id="P:MimeKit.Header.RawField:Value">The raw field name of the header.</blockquote>
+              <h2 class="Section">Remarks</h2>
+              <div class="SectionBox" id="P:MimeKit.Header.RawField:Remarks">
+            Contains the raw field name of the header.
+            </div>
+              <h2 class="Section">Requirements</h2>
+              <div class="SectionBox" id="P:MimeKit.Header.RawField:Version Information">
                 <b>Namespace: </b>MimeKit<br /><b>Assembly: </b>MimeKit (in MimeKit.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
               <hr size="1" />
             </blockquote>
