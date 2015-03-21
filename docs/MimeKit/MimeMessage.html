@@ -264,6 +264,21 @@
             Initializes a new instance of the <a href="../MimeKit/MimeMessage.html">MimeKit.MimeMessage</a> class.
             </td>
                   </tr>
+                  <tr valign="top">
+                    <td>
+                      <div>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        <b>
+                          <a href="#C:MimeKit.MimeMessage(System.Collections.Generic.IEnumerable{MimeKit.InternetAddress},System.Collections.Generic.IEnumerable{MimeKit.InternetAddress},System.String,MimeKit.MimeEntity)">MimeMessage</a>
+                        </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerable`1">IEnumerable&lt;InternetAddress&gt;</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerable`1">IEnumerable&lt;InternetAddress&gt;</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="../MimeKit/MimeEntity.html">MimeEntity</a>)</div>
+                    </td>
+                    <td>
+            Initializes a new instance of the <a href="../MimeKit/MimeMessage.html">MimeKit.MimeMessage</a> class.
+            </td>
+                  </tr>
                 </table>
               </div>
             </div>
@@ -966,6 +981,43 @@
             </div>
               <h2 class="Section">Requirements</h2>
               <div class="SectionBox" id="C:MimeKit.MimeMessage(System.Object[]):Version Information">
+                <b>Namespace: </b>MimeKit<br /><b>Assembly: </b>MimeKit (in MimeKit.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+              <hr size="1" />
+            </blockquote>
+            <h3 id="C:MimeKit.MimeMessage(System.Collections.Generic.IEnumerable{MimeKit.InternetAddress},System.Collections.Generic.IEnumerable{MimeKit.InternetAddress},System.String,MimeKit.MimeEntity)">MimeMessage Constructor</h3>
+            <blockquote id="C:MimeKit.MimeMessage(System.Collections.Generic.IEnumerable{MimeKit.InternetAddress},System.Collections.Generic.IEnumerable{MimeKit.InternetAddress},System.String,MimeKit.MimeEntity):member">
+              <div class="msummary">
+            Initializes a new instance of the <a href="../MimeKit/MimeMessage.html">MimeKit.MimeMessage</a> class.
+            </div>
+              <h2>Syntax</h2>
+              <div class="Signature">public  <b>MimeMessage</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerable`1">IEnumerable&lt;InternetAddress&gt;</a> from, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerable`1">IEnumerable&lt;InternetAddress&gt;</a> to, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> subject, <a href="../MimeKit/MimeEntity.html">MimeEntity</a> body)</div>
+              <h4 class="Subsection">Parameters</h4>
+              <blockquote class="SubsectionBox" id="C:MimeKit.MimeMessage(System.Collections.Generic.IEnumerable{MimeKit.InternetAddress},System.Collections.Generic.IEnumerable{MimeKit.InternetAddress},System.String,MimeKit.MimeEntity):Parameters">
+                <dl>
+                  <dt>
+                    <i>from</i>
+                  </dt>
+                  <dd>The list of addresses in the From header.</dd>
+                  <dt>
+                    <i>to</i>
+                  </dt>
+                  <dd>The list of addresses in the To header.</dd>
+                  <dt>
+                    <i>subject</i>
+                  </dt>
+                  <dd>The subject of the message.</dd>
+                  <dt>
+                    <i>body</i>
+                  </dt>
+                  <dd>The body of the message.</dd>
+                </dl>
+              </blockquote>
+              <h2 class="Section">Remarks</h2>
+              <div class="SectionBox" id="C:MimeKit.MimeMessage(System.Collections.Generic.IEnumerable{MimeKit.InternetAddress},System.Collections.Generic.IEnumerable{MimeKit.InternetAddress},System.String,MimeKit.MimeEntity):Remarks">
+            Creates a new MIME message, specifying details at creation time.
+            </div>
+              <h2 class="Section">Requirements</h2>
+              <div class="SectionBox" id="C:MimeKit.MimeMessage(System.Collections.Generic.IEnumerable{MimeKit.InternetAddress},System.Collections.Generic.IEnumerable{MimeKit.InternetAddress},System.String,MimeKit.MimeEntity):Version Information">
                 <b>Namespace: </b>MimeKit<br /><b>Assembly: </b>MimeKit (in MimeKit.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
               <hr size="1" />
             </blockquote>
@@ -2672,8 +2724,10 @@
               <blockquote class="SubsectionBox" id="M:MimeKit.MimeMessage.ToString():Returns">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> that represents the current <a href="../MimeKit/MimeMessage.html">MimeKit.MimeMessage</a>.</blockquote>
               <h2 class="Section">Remarks</h2>
               <div class="SectionBox" id="M:MimeKit.MimeMessage.ToString():Remarks">
-            Returns a <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> that represents the current <a href="../MimeKit/MimeMessage.html">MimeKit.MimeMessage</a>.
-            </div>
+                <p>Returns a <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> that represents the current <a href="../MimeKit/MimeMessage.html">MimeKit.MimeMessage</a>.</p>
+                <p>Note: In general, the string returned from this method should not be used for serializing the message
+            to disk. Instead, it is recommended that you use <a href="../MimeKit/MimeMessage.html#M:MimeKit.MimeMessage.WriteTo(System.IO.Stream,System.Threading.CancellationToken)">MimeMessage.WriteTo(System.IO.Stream, System.Threading.CancellationToken)</a> instead.</p>
+              </div>
               <h2 class="Section">Requirements</h2>
               <div class="SectionBox" id="M:MimeKit.MimeMessage.ToString():Version Information">
                 <b>Namespace: </b>MimeKit<br /><b>Assembly: </b>MimeKit (in MimeKit.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
