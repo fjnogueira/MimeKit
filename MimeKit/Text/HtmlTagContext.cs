@@ -1,5 +1,5 @@
 ﻿//
-// TextFormat.cs
+// HtmlTagContext.cs
 //
 // Author: Jeffrey Stedfast <jeff@xamarin.com>
 //
@@ -24,42 +24,55 @@
 // THE SOFTWARE.
 //
 
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
 namespace MimeKit.Text {
-	/// <summary>
-	/// An enumeration of text formats.
-	/// </summary>
-	/// <remarks>
-	/// An enumeration of text formats.
-	/// </remarks>
-	public enum TextFormat {
-		/// <summary>
-		/// The plain text format.
-		/// </summary>
-		Plain,
+	public abstract class HtmlTagContext
+	{
+		public HtmlTagContextAttributeCollection Attributes {
+			get; private set;
+		}
 
-		/// <summary>
-		/// The HTML text format.
-		/// </summary>
-		Html,
+		public bool IsEmptyElementTag {
+			get; private set;
+		}
 
-		/// <summary>
-		/// THe markdown format.
-		/// </summary>
-		Markdown,
+		public bool IsEndTag {
+			get; private set;
+		}
 
-		/// <summary>
-		/// The enriched text format.
-		/// </summary>
-		Enriched,
+		public HtmlTagId TagId {
+			get; private set;
+		}
 
-		/// <summary>
-		/// The compressed rich text format.
-		/// </summary>
-		CompressedRichText,
+		public string TagName {
+			get; private set;
+		}
 
-		/// <summary>
-		/// The rich text format.
-		/// </summary>
-		RichText,
+		public void DeleteInnerContent ()
+		{
+		}
+
+		public void DeleteTag ()
+		{
+		}
+
+		public void DeleteTag (bool keepEndTag)
+		{
+		}
+
+		public void InvokeCallbackForEndTag ()
+		{
+		}
+
+		public void WriteTag ()
+		{
+		}
+
+		public void WriteTag (bool copyInputAttributes)
+		{
+		}
 	}
 }

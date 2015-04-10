@@ -1,5 +1,5 @@
 ﻿//
-// TextFormat.cs
+// HtmlTagContextAttributeCollection.cs
 //
 // Author: Jeffrey Stedfast <jeff@xamarin.com>
 //
@@ -24,42 +24,31 @@
 // THE SOFTWARE.
 //
 
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
 namespace MimeKit.Text {
-	/// <summary>
-	/// An enumeration of text formats.
-	/// </summary>
-	/// <remarks>
-	/// An enumeration of text formats.
-	/// </remarks>
-	public enum TextFormat {
-		/// <summary>
-		/// The plain text format.
-		/// </summary>
-		Plain,
+	public class HtmlTagContextAttributeCollection : IEnumerable<HtmlTagContextAttribute>
+	{
+		readonly List<HtmlTagContextAttribute> attributes = new List<HtmlTagContextAttribute> ();
 
-		/// <summary>
-		/// The HTML text format.
-		/// </summary>
-		Html,
+		public int Count {
+			get { return attributes.Count; }
+		}
 
-		/// <summary>
-		/// THe markdown format.
-		/// </summary>
-		Markdown,
+		public HtmlTagContextAttribute this[int index] {
+			get { return attributes[index]; }
+		}
 
-		/// <summary>
-		/// The enriched text format.
-		/// </summary>
-		Enriched,
+		public IEnumerator<HtmlTagContextAttribute> GetEnumerator ()
+		{
+			return attributes.GetEnumerator ();
+		}
 
-		/// <summary>
-		/// The compressed rich text format.
-		/// </summary>
-		CompressedRichText,
-
-		/// <summary>
-		/// The rich text format.
-		/// </summary>
-		RichText,
+		IEnumerator IEnumerable.GetEnumerator ()
+		{
+			return attributes.GetEnumerator ();
+		}
 	}
 }

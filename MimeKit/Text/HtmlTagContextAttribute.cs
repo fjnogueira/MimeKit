@@ -1,5 +1,5 @@
 ﻿//
-// TextFormat.cs
+// HtmlTagContextAttribute.cs
 //
 // Author: Jeffrey Stedfast <jeff@xamarin.com>
 //
@@ -24,42 +24,27 @@
 // THE SOFTWARE.
 //
 
+using System;
+
 namespace MimeKit.Text {
-	/// <summary>
-	/// An enumeration of text formats.
-	/// </summary>
-	/// <remarks>
-	/// An enumeration of text formats.
-	/// </remarks>
-	public enum TextFormat {
-		/// <summary>
-		/// The plain text format.
-		/// </summary>
-		Plain,
+	public struct HtmlTagContextAttribute
+	{
+		public static readonly HtmlTagContextAttribute Null;
 
-		/// <summary>
-		/// The HTML text format.
-		/// </summary>
-		Html,
+		public HtmlAttributeId Id {
+			get; private set;
+		}
 
-		/// <summary>
-		/// THe markdown format.
-		/// </summary>
-		Markdown,
+		public bool IsNull {
+			get; private set;
+		}
 
-		/// <summary>
-		/// The enriched text format.
-		/// </summary>
-		Enriched,
+		public string Name {
+			get; private set;
+		}
 
-		/// <summary>
-		/// The compressed rich text format.
-		/// </summary>
-		CompressedRichText,
-
-		/// <summary>
-		/// The rich text format.
-		/// </summary>
-		RichText,
+		public string Value {
+			get; private set;
+		}
 	}
 }

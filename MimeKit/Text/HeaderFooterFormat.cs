@@ -1,5 +1,5 @@
 ﻿//
-// TextFormat.cs
+// HeaderFooterFormat.cs
 //
 // Author: Jeffrey Stedfast <jeff@xamarin.com>
 //
@@ -26,40 +26,17 @@
 
 namespace MimeKit.Text {
 	/// <summary>
-	/// An enumeration of text formats.
+	/// An enumeration of possible header and footer formats.
 	/// </summary>
-	/// <remarks>
-	/// An enumeration of text formats.
-	/// </remarks>
-	public enum TextFormat {
+	public enum HeaderFooterFormat {
 		/// <summary>
-		/// The plain text format.
+		/// The header or footer contains plain text.
 		/// </summary>
-		Plain,
+		Text,
 
 		/// <summary>
-		/// The HTML text format.
+		/// The header or footer contains properly formatted HTML.
 		/// </summary>
-		Html,
-
-		/// <summary>
-		/// THe markdown format.
-		/// </summary>
-		Markdown,
-
-		/// <summary>
-		/// The enriched text format.
-		/// </summary>
-		Enriched,
-
-		/// <summary>
-		/// The compressed rich text format.
-		/// </summary>
-		CompressedRichText,
-
-		/// <summary>
-		/// The rich text format.
-		/// </summary>
-		RichText,
+		Html
 	}
 }
