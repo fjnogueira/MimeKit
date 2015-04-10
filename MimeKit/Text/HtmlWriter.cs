@@ -26,6 +26,7 @@
 
 using System;
 using System.IO;
+using System.Text;
 
 #if PORTABLE
 using Encoding = Portable.Text.Encoding;
@@ -63,12 +64,121 @@ namespace MimeKit.Text {
 			get; private set;
 		}
 
+		static void ValidateArguments (char[] buffer, int index, int count)
+		{
+			if (buffer == null)
+				throw new ArgumentNullException ("buffer");
+
+			if (index < 0 || index > buffer.Length)
+				throw new ArgumentOutOfRangeException ("index");
+
+			if (count < 0 || index + count > buffer.Length)
+				throw new ArgumentOutOfRangeException ("count");
+		}
+
+		static void ValidateAttributeName (string name)
+		{
+			if (name == null)
+				throw new ArgumentNullException ("name");
+
+			if (name.Length == 0)
+				throw new ArgumentException ("The attribute name cannot be empty.", "name");
+
+			for (int i = 0; i < name.Length; i++) {
+				bool isAlpha = (name[i] >= 'A' && name[i] <= 'Z') || (name[i] >= 'a' && name[i] <= 'z');
+				bool isDigit = name[i] >= '0' && name[i] <= '9';
+
+				if ((!isAlpha && !isDigit) || (isDigit && i == 0))
+					throw new ArgumentException ("Invalid attribute name.", "name");
+			}
+		}
+
+		static void ValidateTagName (string name)
+		{
+			if (name == null)
+				throw new ArgumentNullException ("name");
+
+			if (name.Length == 0)
+				throw new ArgumentException ("The tag name cannot be empty.", "name");
+
+			for (int i = 0; i < name.Length; i++) {
+				bool isAlpha = (name[i] >= 'A' && name[i] <= 'Z') || (name[i] >= 'a' && name[i] <= 'z');
+				bool isDigit = name[i] >= '0' && name[i] <= '9';
+
+				if ((!isAlpha && !isDigit) || (isDigit && i == 0))
+					throw new ArgumentException ("Invalid tag name.", "name");
+			}
+		}
+
+		static string QuoteAttributeValue (string value)
+		{
+			if (value.Length == 0)
+				return "\"\"";
+
+			var quoted = new StringBuilder ();
+
+			quoted.Append ("\"");
+			for (int i = 0; i < value.Length; i++) {
+				char c = value[i];
+
+				switch (c) {
+				case '"': quoted.Append ("&quot;"); break;
+				case '&': quoted.Append ("&amp;"); break;
+				case '<': quoted.Append ("&lt;"); break;
+				case '>': quoted.Append ("&gt;"); break;
+				default:
+					if (c < 32 || c >= 127)
+						quoted.AppendFormat ("&#{0:D};", c);
+					else
+						quoted.Append (c);
+					break;
+				}
+			}
+			quoted.Append ("\"");
+
+			return quoted.ToString ();
+		}
+
+		void EncodeAttributeName (string name)
+		{
+			if (WriterState == HtmlWriterState.Default)
+				throw new InvalidOperationException ("Cannot write attributes in the Default state.");
+
+			writer.Write (" " + name + "=");
+			WriterState = HtmlWriterState.Attribute;
+		}
+
+		void EncodeAttributeValue (string value)
+		{
+			if (WriterState != HtmlWriterState.Attribute)
+				throw new InvalidOperationException ("Attribute values can only be written in the Attribute state.");
+
+			writer.Write (QuoteAttributeValue (value));
+			WriterState = HtmlWriterState.Tag;
+		}
+
+		void EncodeAttribute (string name, string value)
+		{
+			EncodeAttributeName (name);
+			EncodeAttributeValue (value);
+		}
+
 		public void WriteAttribute (HtmlAttributeId id, char[] buffer, int index, int count)
 		{
+			if (id == HtmlAttributeId.Unknown)
+				throw new ArgumentException ("Invalid attribute.", "id");
+
+			ValidateArguments (buffer, index, count);
+
+			EncodeAttribute (id.ToAttributeName (), new string (buffer, index, count));
 		}
 
 		public void WriteAttribute (string name, char[] buffer, int index, int count)
 		{
+			ValidateAttributeName (name);
+			ValidateArguments (buffer, index, count);
+
+			EncodeAttribute (name, new string (buffer, index, count));
 		}
 
 		public void WriteAttribute (HtmlAttributeReader attributeReader)
@@ -77,14 +187,251 @@ namespace MimeKit.Text {
 
 		public void WriteAttribute (HtmlAttributeId id, string value)
 		{
+			if (id == HtmlAttributeId.Unknown)
+				throw new ArgumentException ("Invalid attribute.", "id");
+
+			if (value == null)
+				throw new ArgumentNullException ("value");
+
+			EncodeAttribute (id.ToAttributeName (), value);
 		}
 
 		public void WriteAttribute (string name, string value)
 		{
-			// FIXME: implemement this
+			ValidateAttributeName (name);
+
+			if (value == null)
+				throw new ArgumentNullException ("value");
+
+			EncodeAttribute (name, value);
 		}
 
+		public void WriteAttributeName (HtmlAttributeReader attributeReader)
+		{
+		}
 
+		public void WriteAttributeName (HtmlAttributeId id)
+		{
+			if (id == HtmlAttributeId.Unknown)
+				throw new ArgumentException ("Invalid attribute.", "id");
+
+			if (WriterState == HtmlWriterState.Default)
+				throw new InvalidOperationException ("Cannot write attributes in the Default state.");
+
+			EncodeAttributeName (id.ToString ());
+		}
+
+		public void WriteAttributeName (string name)
+		{
+			ValidateAttributeName (name);
+
+			if (WriterState == HtmlWriterState.Default)
+				throw new InvalidOperationException ("Cannot write attributes in the Default state.");
+
+			EncodeAttributeName (name);
+		}
+
+		public void WriteAttributeValue (char[] buffer, int index, int count)
+		{
+			ValidateArguments (buffer, index, count);
+
+			EncodeAttributeValue (new string (buffer, index, count));
+		}
+
+		public void WriteAttributeValue (HtmlAttributeReader attributeReader)
+		{
+		}
+
+		public void WriteAttributeValue (string value)
+		{
+			if (value == null)
+				throw new ArgumentNullException ("value");
+
+			EncodeAttributeValue (value);
+		}
+
+		public void WriteEmptyElementTag (HtmlTagId id)
+		{
+			if (id == HtmlTagId.Unknown)
+				throw new ArgumentException ("Invalid tag.", "id");
+
+			if (WriterState == HtmlWriterState.Attribute)
+				EncodeAttributeValue (string.Empty);
+
+			if (WriterState != HtmlWriterState.Default) {
+				WriterState = HtmlWriterState.Default;
+				writer.Write (">");
+			}
+
+			writer.Write (string.Format ("<{0}/>", id.ToHtmlTagName ()));
+		}
+
+		public void WriteEmptyElementTag (string name)
+		{
+			ValidateTagName (name);
+
+			if (WriterState == HtmlWriterState.Attribute)
+				EncodeAttributeValue (string.Empty);
+
+			if (WriterState != HtmlWriterState.Default) {
+				WriterState = HtmlWriterState.Default;
+				writer.Write (">");
+			}
+
+			writer.Write (string.Format ("<{0}/>", name));
+		}
+
+		public void WriteEndTag (HtmlTagId id)
+		{
+			if (id == HtmlTagId.Unknown)
+				throw new ArgumentException ("Invalid tag.", "id");
+
+			if (WriterState == HtmlWriterState.Attribute)
+				EncodeAttributeValue (string.Empty);
+
+			if (WriterState != HtmlWriterState.Default) {
+				WriterState = HtmlWriterState.Default;
+				writer.Write (">");
+			}
+
+			writer.Write (string.Format ("</{0}>", id.ToHtmlTagName ()));
+		}
+
+		public void WriteEndTag (string name)
+		{
+			ValidateTagName (name);
+
+			if (WriterState == HtmlWriterState.Attribute)
+				EncodeAttributeValue (string.Empty);
+
+			if (WriterState != HtmlWriterState.Default) {
+				WriterState = HtmlWriterState.Default;
+				writer.Write (">");
+			}
+
+			writer.Write (string.Format ("</{0}>", name));
+		}
+
+		/// <summary>
+		/// Write a buffer containing HTML markup directly to the output, without escaping special characters.
+		/// </summary>
+		/// <remarks>
+		/// Writes a buffer containing HTML markup directly to the output, without escaping special characters.
+		/// </remarks>
+		/// <param name="buffer">The buffer containing HTML markup.</param>
+		/// <param name="index">The index of the first character to write.</param>
+		/// <param name="count">The number of characters to write.</param>
+		public void WriteMarkupText (char[] buffer, int index, int count)
+		{
+			ValidateArguments (buffer, index, count);
+
+			if (WriterState == HtmlWriterState.Attribute)
+				EncodeAttributeValue (string.Empty);
+
+			if (WriterState != HtmlWriterState.Default) {
+				WriterState = HtmlWriterState.Default;
+				writer.Write (">");
+			}
+
+			writer.Write (buffer, index, count);
+		}
+
+		//public void WriteMarkupText (HtmlReader reader)
+		//{
+		//}
+
+		/// <summary>
+		/// Write a string containing HTML markup directly to the output, without escaping special characters.
+		/// </summary>
+		/// <remarks>
+		/// Writes a string containing HTML markup directly to the output, without escaping special characters.
+		/// </remarks>
+		/// <param name="value">The string containing HTML markup.</param>
+		public void WriteMarkupText (string value)
+		{
+			if (value == null)
+				throw new ArgumentNullException ("value");
+
+			if (WriterState == HtmlWriterState.Attribute)
+				EncodeAttributeValue (string.Empty);
+
+			if (WriterState != HtmlWriterState.Default) {
+				WriterState = HtmlWriterState.Default;
+				writer.Write (">");
+			}
+
+			writer.Write (value);
+		}
+
+		public void WriteStartTag (HtmlTagId id)
+		{
+			if (id == HtmlTagId.Unknown)
+				throw new ArgumentException ("Invalid tag.", "id");
+
+			if (WriterState == HtmlWriterState.Attribute)
+				EncodeAttributeValue (string.Empty);
+
+			if (WriterState != HtmlWriterState.Default)
+				writer.Write (">");
+
+			writer.Write (string.Format ("<{0}", id.ToHtmlTagName ()));
+			WriterState = HtmlWriterState.Tag;
+		}
+
+		public void WriteStartTag (string name)
+		{
+			ValidateTagName (name);
+
+			if (WriterState == HtmlWriterState.Attribute)
+				EncodeAttributeValue (string.Empty);
+
+			if (WriterState != HtmlWriterState.Default)
+				writer.Write (">");
+
+			writer.Write (string.Format ("<{0}", name));
+			WriterState = HtmlWriterState.Tag;
+		}
+
+		//public void WriteTag (HtmlReader reader)
+		//{
+		//}
+
+		public void WriteText (char[] buffer, int index, int count)
+		{
+			ValidateArguments (buffer, index, count);
+
+			if (WriterState == HtmlWriterState.Attribute)
+				EncodeAttributeValue (string.Empty);
+
+			if (WriterState != HtmlWriterState.Default) {
+				WriterState = HtmlWriterState.Default;
+				writer.Write (">");
+			}
+
+			// TODO: escape the text
+			writer.Write (buffer, index, count);
+		}
+
+		//public void WriteText (HtmlReader reader)
+		//{
+		//}
+
+		public void WriteText (string value)
+		{
+			if (value == null)
+				throw new ArgumentNullException ("value");
+
+			if (WriterState == HtmlWriterState.Attribute)
+				EncodeAttributeValue (string.Empty);
+
+			if (WriterState != HtmlWriterState.Default) {
+				WriterState = HtmlWriterState.Default;
+				writer.Write (">");
+			}
+
+			// TODO: escape the text
+			writer.Write (value);
+		}
 
 		public void Flush ()
 		{

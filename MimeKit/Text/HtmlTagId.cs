@@ -160,18 +160,26 @@ namespace MimeKit.Text {
 		}
 
 		/// <summary>
-		/// Converts the enum value into the equivalent attribute name.
+		/// Converts the enum value into the equivalent tag name.
 		/// </summary>
 		/// <remarks>
-		/// Converts the enum value into the equivalent attribute name.
+		/// Converts the enum value into the equivalent tag name.
 		/// </remarks>
-		/// <returns>The attribute name.</returns>
+		/// <returns>The tag name.</returns>
 		/// <param name="value">The enum value.</param>
-		public static string ToAttributeName (this HtmlTagId value)
+		public static string ToHtmlTagName (this HtmlTagId value)
 		{
 			return value.ToString ().ToLowerInvariant ();
 		}
 
+		/// <summary>
+		/// Converts the tag name into the equivalent tag id.
+		/// </summary>
+		/// <remarks>
+		/// Converts the tag name into the equivalent tag id.
+		/// </remarks>
+		/// <returns>The tag id.</returns>
+		/// <param name="name">The tag name.</param>
 		public static HtmlTagId ToHtmlTagId (this string name)
 		{
 			HtmlTagId value;

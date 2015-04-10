@@ -28,6 +28,9 @@ namespace MimeKit.Text {
 	/// <summary>
 	/// An enumeration of possible header and footer formats.
 	/// </summary>
+	/// <remarks>
+	/// An enumeration of possible header and footer formats.
+	/// </remarks>
 	public enum HeaderFooterFormat {
 		/// <summary>
 		/// The header or footer contains plain text.

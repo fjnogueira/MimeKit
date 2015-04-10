@@ -170,6 +170,14 @@ namespace MimeKit.Text {
 			return value.ToString ().ToLowerInvariant ();
 		}
 
+		/// <summary>
+		/// Converts the attribute name into the equivalent attribute id.
+		/// </summary>
+		/// <remarks>
+		/// Converts the attribute name into the equivalent attribute id.
+		/// </remarks>
+		/// <returns>The attribute id.</returns>
+		/// <param name="name">The attribute name.</param>
 		public static HtmlAttributeId ToHtmlAttributeId (this string name)
 		{
 			HtmlAttributeId value;
