@@ -310,7 +310,9 @@
                     <td colspan="2">
                       <b>
                         <a href="#M:MimeKit.InternetAddress.CompareTo(MimeKit.InternetAddress)">CompareTo</a>
-                      </b>(<a href="../MimeKit/InternetAddress.html">InternetAddress</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+                      </b>(<a href="../MimeKit/InternetAddress.html">InternetAddress</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
+            Compares two internet addresses.
+            </blockquote></td>
                   </tr>
                   <tr valign="top">
                     <td>
@@ -319,7 +321,9 @@
                     <td colspan="2">
                       <b>
                         <a href="#M:MimeKit.InternetAddress.Equals(MimeKit.InternetAddress)">Equals</a>
-                      </b>(<a href="../MimeKit/InternetAddress.html">InternetAddress</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a></nobr><blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+                      </b>(<a href="../MimeKit/InternetAddress.html">InternetAddress</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a></nobr><blockquote>
+            Determines whether the specified <a href="../MimeKit/InternetAddress.html">MimeKit.InternetAddress</a> is equal to the current <a href="../MimeKit/InternetAddress.html">MimeKit.InternetAddress</a>.
+            </blockquote></td>
                   </tr>
                   <tr valign="top">
                     <td>
@@ -596,8 +600,8 @@
             <h3 id="M:MimeKit.InternetAddress.CompareTo(MimeKit.InternetAddress)">CompareTo Method</h3>
             <blockquote id="M:MimeKit.InternetAddress.CompareTo(MimeKit.InternetAddress):member">
               <div class="msummary">
-                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-              </div>
+            Compares two internet addresses.
+            </div>
               <h2>Syntax</h2>
               <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>CompareTo</b> (<a href="../MimeKit/InternetAddress.html">InternetAddress</a> other)</div>
               <h4 class="Subsection">Parameters</h4>
@@ -606,19 +610,32 @@
                   <dt>
                     <i>other</i>
                   </dt>
-                  <dd>
-                    <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-                  </dd>
+                  <dd>The internet address to compare to.</dd>
                 </dl>
               </blockquote>
               <h4 class="Subsection">Returns</h4>
-              <blockquote class="SubsectionBox" id="M:MimeKit.InternetAddress.CompareTo(MimeKit.InternetAddress):Returns">
-                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              <blockquote class="SubsectionBox" id="M:MimeKit.InternetAddress.CompareTo(MimeKit.InternetAddress):Returns">The sort order of the current internet address compared to the other internet address.</blockquote>
+              <h4 class="Subsection">Exceptions</h4>
+              <blockquote class="SubsectionBox" id="M:MimeKit.InternetAddress.CompareTo(MimeKit.InternetAddress):Exceptions">
+                <table class="TypeDocumentation">
+                  <tr>
+                    <th>Type</th>
+                    <th>Reason</th>
+                  </tr>
+                  <tr valign="top">
+                    <td>
+                      <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.ArgumentNullException">ArgumentNullException</a>
+                    </td>
+                    <td>
+                      <i>other</i> is <tt>null</tt>.
+            </td>
+                  </tr>
+                </table>
               </blockquote>
               <h2 class="Section">Remarks</h2>
               <div class="SectionBox" id="M:MimeKit.InternetAddress.CompareTo(MimeKit.InternetAddress):Remarks">
-                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-              </div>
+            Compares two internet addresses for the purpose of sorting.
+            </div>
               <h2 class="Section">Requirements</h2>
               <div class="SectionBox" id="M:MimeKit.InternetAddress.CompareTo(MimeKit.InternetAddress):Version Information">
                 <b>Namespace: </b>MimeKit<br /><b>Assembly: </b>MimeKit (in MimeKit.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
@@ -663,8 +680,8 @@
             <h3 id="M:MimeKit.InternetAddress.Equals(MimeKit.InternetAddress)">Equals Method</h3>
             <blockquote id="M:MimeKit.InternetAddress.Equals(MimeKit.InternetAddress):member">
               <div class="msummary">
-                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-              </div>
+            Determines whether the specified <a href="../MimeKit/InternetAddress.html">MimeKit.InternetAddress</a> is equal to the current <a href="../MimeKit/InternetAddress.html">MimeKit.InternetAddress</a>.
+            </div>
               <h2>Syntax</h2>
               <div class="Signature">public abstract <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>Equals</b> (<a href="../MimeKit/InternetAddress.html">InternetAddress</a> other)</div>
               <h4 class="Subsection">Parameters</h4>
@@ -673,19 +690,17 @@
                   <dt>
                     <i>other</i>
                   </dt>
-                  <dd>
-                    <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-                  </dd>
+                  <dd>The <a href="../MimeKit/InternetAddress.html">MimeKit.InternetAddress</a> to compare with the current <a href="../MimeKit/InternetAddress.html">MimeKit.InternetAddress</a>.</dd>
                 </dl>
               </blockquote>
               <h4 class="Subsection">Returns</h4>
               <blockquote class="SubsectionBox" id="M:MimeKit.InternetAddress.Equals(MimeKit.InternetAddress):Returns">
-                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-              </blockquote>
+                <tt>true</tt> if the specified <a href="../MimeKit/InternetAddress.html">MimeKit.InternetAddress</a> is equal to the current
+            <a href="../MimeKit/InternetAddress.html">MimeKit.InternetAddress</a>; otherwise, <tt>false</tt>.</blockquote>
               <h2 class="Section">Remarks</h2>
               <div class="SectionBox" id="M:MimeKit.InternetAddress.Equals(MimeKit.InternetAddress):Remarks">
-                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-              </div>
+            Compares two internet addresses to determine if they are identical or not.
+            </div>
               <h2 class="Section">Requirements</h2>
               <div class="SectionBox" id="M:MimeKit.InternetAddress.Equals(MimeKit.InternetAddress):Version Information">
                 <b>Namespace: </b>MimeKit<br /><b>Assembly: </b>MimeKit (in MimeKit.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
