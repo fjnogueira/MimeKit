@@ -35,7 +35,7 @@ namespace MimeKit.Text {
 		/// <summary>
 		/// The plain text format.
 		/// </summary>
-		Plain,
+		Text,
 
 		/// <summary>
 		/// The HTML text format.

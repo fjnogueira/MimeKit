@@ -53,7 +53,7 @@ namespace MimeKit.Text {
 		/// </remarks>
 		/// <value>The input format.</value>
 		public override TextFormat InputFormat {
-			get { return TextFormat.Plain; }
+			get { return TextFormat.Text; }
 		}
 
 		/// <summary>

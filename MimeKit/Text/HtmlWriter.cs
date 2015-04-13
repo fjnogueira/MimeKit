@@ -35,6 +35,8 @@ using Encoding = System.Text.Encoding;
 #endif
 
 namespace MimeKit.Text {
+	public delegate void HtmlTagCallback (HtmlTagContext tagContext, HtmlWriter htmlWriter);
+
 	public class HtmlWriter : IDisposable
 	{
 		TextWriter writer;
