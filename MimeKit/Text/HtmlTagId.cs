@@ -156,7 +156,7 @@ namespace MimeKit.Text {
 			dict = new Dictionary<string, HtmlTagId> (values.Length - 1, StringComparer.OrdinalIgnoreCase);
 
 			for (int i = 0; i < values.Length - 1; i++)
-				dict.Add (values[i].ToAttributeName (), values[i]);
+				dict.Add (values[i].ToHtmlTagName (), values[i]);
 		}
 
 		/// <summary>
